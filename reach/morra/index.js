@@ -60,7 +60,6 @@ class Player extends React.Component {
     this.setState({view: 'WaitingForResults', guess});
     return guessToInt[guess];
   }
-  // seeWinning(i) { this.setState({view: 'WinningNum', winningNum: intToGuess[i]}); }
   seeOutcome(i) { this.setState({view: 'Done', outcome: intToOutcome[i]}); }
   informTimeout() { this.setState({view: 'Timeout'}); }
   playFinger(finger) { this.state.resolveFingerP(finger); }
@@ -94,7 +93,7 @@ class Attacher extends Player {
     this.setState({view: 'Attaching'});
     backend.Bob(ctc, this);
   }
-  async acceptWager(wagerAtomic) { // Fun([UInt], Null)
+  async acceptWager(wagerAtomic) { 
     const wager = reach.formatCurrency(wagerAtomic, 4);
     return await new Promise(resolveAcceptedP => {
       this.setState({view: 'AcceptTerms', wager, resolveAcceptedP});
