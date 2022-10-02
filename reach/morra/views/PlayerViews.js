@@ -115,18 +115,6 @@ exports.WaitingForResults = class extends React.Component {
   }
 }
 
-// exports.WinningNum = class extends React.Component {
-//   render() {
-//     const {winningNum} = this.props;
-//     return (
-//       <div>
-//         The total number of the finger(s) in this game was:
-//         <br />{winningNum || 'Unknown'}
-//       </div>
-//     );
-//   }
-// }
-
 exports.Done = class extends React.Component {
   render() {
     const {outcome} = this.props;
