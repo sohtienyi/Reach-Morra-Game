@@ -44,7 +44,6 @@ const Player = {
   ...hasRandom, // <--- new!
   getFinger: Fun([], UInt),
   getGuess: Fun([], UInt),
-  // seeWinning: Fun([UInt], Null),
   seeOutcome: Fun([UInt], Null),
   informTimeout: Fun([], Null)
 };
@@ -127,13 +126,6 @@ export const main = Reach.App(() => {
       const saltGuessAlice = declassify(_saltGuessAlice);
       const guessAlice = declassify(_guessAlice);
     });
-    // Alice.publish(saltAlice, fingerAlice);
-    // checkCommitment(commitAlice, saltAlice, fingerAlice);
-
-    // Alice.only(() => {
-    //   const [saltAlice, fingerAlice] = declassify([_saltAlice, _fingerAlice]); 
-    //   const [saltGuessAlice, guessAlice] = declassify([_saltGuessAlice, _guessAlice]); 
-    // });
 
     Alice.publish(saltAlice, fingerAlice)
       .timeout(relativeTime(deadline), () => closeTo(Bob, informTimeout));
@@ -143,15 +135,6 @@ export const main = Reach.App(() => {
     Alice.publish(saltGuessAlice, guessAlice)
       .timeout(relativeTime(deadline), () => closeTo(Bob, informTimeout));
     checkCommitment(comGuessAlice, saltGuessAlice, guessAlice);
-    // commit();
-
-    // Alice.only(() => {        
-    //   const WinningNumber = fingerAlice + fingerBob;
-    //   interact.seeWinning(WinningNumber);
-    // });
- 
-    // Alice.publish(WinningNumber)
-    //   .timeout(relativeTime(deadline), () => closeTo(Alice, informTimeout));
 
     outcome = winner(fingerAlice, fingerBob, guessAlice, guessBob);
     continue; 
